@@ -413,23 +413,31 @@
 
   <script src="assets/js/app.js"></script>
 
-<section class="section">
-<h2>🧪 Evaluación interactiva</h2>
-<p>Selecciona la respuesta correcta:</p>
-
-<div class="pie-block">
-<p><b>¿Qué es biodiversidad?</b></p>
-<button class="pie-btn" onclick="check(1)">Variedad de vida</button>
-<button class="pie-btn" onclick="check(0)">Solo animales</button>
+<!-- TOOLBAR ACCESIBILIDAD -->
+<div id="toolbar" style="position:fixed;top:10px;right:10px;z-index:999;">
+<button onclick="toggleTheme()">🌓</button>
+<button onclick="incFont()">A+</button>
+<button onclick="decFont()">A-</button>
+<button onclick="leerPagina()">🗣️</button>
 </div>
 
-<div class="pie-block">
-<p><b>¿Qué demuestra un fósil?</b></p>
-<button class="pie-btn" onclick="check2(1)">Cambio en especies</button>
-<button class="pie-btn" onclick="check2(0)">Nada cambia</button>
+<!-- PROGRESO -->
+<div style="position:fixed;top:0;left:0;width:100%;height:6px;background:#111;">
+<div id="bar" style="height:100%;width:0%;background:#22d3ee;"></div>
 </div>
 
-<h3 id="resultado_final"></h3>
+<!-- QUIZ -->
+<section style="padding:40px;">
+<h2>🧪 Evaluación</h2>
+<p>¿Qué es biodiversidad?</p>
+<button onclick="q(1)">Variedad de vida</button>
+<button onclick="q(0)">Solo animales</button>
+
+<p>¿Qué demuestra un fósil?</p>
+<button onclick="q2(1)">Cambio en especies</button>
+<button onclick="q2(0)">Nada cambia</button>
+
+<h3 id="nota"></h3>
 </section>
 
 </body>

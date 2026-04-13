@@ -100,19 +100,38 @@ quizCards.forEach(card => {
   });
 });
 
+let score=0;
+let progress=0;
 
-// ===== QUIZ PRO =====
-let score = 0;
-
-function check(v){
-    if(v===1){score+=50; alert("Correcto 👍")}
-    else alert("Intentemos de nuevo 💡");
+function q(v){
+ if(v){score+=50;alert("Correcto 👍")}else alert("Intenta otra vez 💡");
+ progress+=25; updateBar();
+}
+function q2(v){
+ if(v){score+=50;alert("Correcto 👍")}else alert("Intenta otra vez 💡");
+ progress+=25; updateBar();
+ let nota=1+(score/100)*6;
+ document.getElementById("nota").innerHTML="Nota: "+nota.toFixed(1);
 }
 
-function check2(v){
-    if(v===1){score+=50; alert("Correcto 👍")}
-    else alert("Intentemos de nuevo 💡");
+function updateBar(){
+ document.getElementById("bar").style.width=progress+"%";
+}
 
-    let nota = 1 + (score/100)*6;
-    document.getElementById("resultado_final").innerHTML = "Nota final: " + nota.toFixed(1);
+function toggleTheme(){
+ document.body.classList.toggle("light");
+}
+
+function incFont(){
+ document.body.style.fontSize="22px";
+}
+function decFont(){
+ document.body.style.fontSize="16px";
+}
+
+function leerPagina(){
+ let t=document.body.innerText;
+ let s=new SpeechSynthesisUtterance(t);
+ s.lang="es-CL";
+ speechSynthesis.speak(s);
 }
