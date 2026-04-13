@@ -20,6 +20,7 @@
         <a href="#ideas">Ideas clave</a>
         <a href="#teorias">Teorías</a>
         <a href="#pruebas">Pruebas</a>
+        <a href="#conceptos">Conceptos</a>
         <a href="#especiacion">Especiación</a>
         <a href="#cuidado">Cuidado</a>
         <a href="#quiz">Quiz</a>
@@ -249,6 +250,99 @@
       </div>
     </section>
 
+    
+    <section id="conceptos" class="section container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Conceptos clave</p>
+          <h3>Ideas que suelen confundirse</h3>
+        </div>
+        <span class="pill">Aclaración rápida</span>
+      </div>
+
+      <div class="grid grid-2 concept-grid">
+        <article class="card concept-card">
+          <h4>🧬 Mutación</h4>
+          <p>Es un cambio en el material genético. No siempre se ve a simple vista y no siempre es beneficioso.</p>
+          <p class="muted">Una mutación aporta variación. Esa variación luego puede mantenerse o desaparecer en una población.</p>
+        </article>
+        <article class="card concept-card">
+          <h4>🌿 Adaptación</h4>
+          <p>Es una característica que ayuda a sobrevivir o reproducirse mejor en un ambiente.</p>
+          <p class="muted">No aparece “porque el organismo la quiera”, sino porque ciertas variantes ya presentes resultan ventajosas.</p>
+        </article>
+        <article class="card concept-card">
+          <h4>⚖️ Selección natural</h4>
+          <p>Es el proceso por el que algunos rasgos heredables se vuelven más comunes porque ayudan a sobrevivir y dejar descendencia.</p>
+          <p class="muted">La selección natural no “crea” el rasgo: actúa sobre la variabilidad que ya existe.</p>
+        </article>
+        <article class="card concept-card">
+          <h4>🧭 Especiación</h4>
+          <p>Es la formación de una nueva especie después de muchas generaciones de separación y acumulación de diferencias.</p>
+          <p class="muted">Aquí ya no hablamos solo de variación dentro de una población, sino de linajes que dejan de cruzarse entre sí.</p>
+        </article>
+      </div>
+
+      <div class="panel lesson-panel">
+        <div class="section-head compact">
+          <div>
+            <p class="eyebrow cyan">Cómo estudiar este tema</p>
+            <h4>Ruta de aprendizaje recomendada</h4>
+          </div>
+          <span class="pill">Pensado para PIE</span>
+        </div>
+        <div class="grid grid-4 route-grid">
+          <article class="route-card">
+            <span class="route-num">1</span>
+            <p>Observa primero la imagen o ejemplo.</p>
+          </article>
+          <article class="route-card">
+            <span class="route-num">2</span>
+            <p>Lee la idea principal en una sola frase.</p>
+          </article>
+          <article class="route-card">
+            <span class="route-num">3</span>
+            <p>Relaciona esa idea con una evidencia.</p>
+          </article>
+          <article class="route-card">
+            <span class="route-num">4</span>
+            <p>Comprueba con una pregunta breve.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tinted">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow lime">Aplicar lo aprendido</p>
+            <h3>Situaciones para pensar mejor</h3>
+          </div>
+          <span class="pill">Transferencia</span>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="card scenario-card">
+            <h4>🦋 Caso 1</h4>
+            <p>En un ambiente oscuro, una mariposa con color más oscuro se camufla mejor y sobrevive más.</p>
+            <p class="muted"><strong>Idea asociada:</strong> selección natural.</p>
+          </article>
+          <article class="card scenario-card">
+            <h4>🏝️ Caso 2</h4>
+            <p>Dos poblaciones quedan separadas por una barrera geográfica y con el tiempo ya no pueden reproducirse entre sí.</p>
+            <p class="muted"><strong>Idea asociada:</strong> especiación.</p>
+          </article>
+          <article class="card scenario-card">
+            <h4>🧬 Caso 3</h4>
+            <p>Al comparar ADN de dos especies, se encuentra una secuencia muy parecida.</p>
+            <p class="muted"><strong>Idea asociada:</strong> parentesco evolutivo cercano.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
     <section id="cuidado" class="section section-tinted">
       <div class="container">
         <div class="section-head">
@@ -316,29 +410,43 @@
       </div>
     </section>
 
+    
     <section id="quiz" class="section section-tinted">
       <div class="container">
         <div class="section-head">
           <div>
-            <p class="eyebrow cyan">Mini quiz</p>
-            <h3>Repaso rápido</h3>
+            <p class="eyebrow cyan">Quiz final</p>
+            <h3>Repaso guiado con resultado y nota</h3>
           </div>
-          <span class="pill">Interactivo</span>
+          <span class="pill">8 preguntas</span>
         </div>
 
-        <div class="grid grid-3 quiz-grid">
+        <div class="quiz-header panel">
+          <div>
+            <h4>Antes de responder</h4>
+            <p class="muted">Lee cada pregunta con calma. Elige una alternativa por tarjeta. Al final, presiona el botón para ver tu puntaje, porcentaje y nota.</p>
+          </div>
+          <div class="quiz-status">
+            <div class="quiz-progress" aria-label="Progreso del quiz">
+              <div id="quizProgressBar" class="quiz-progress-bar"></div>
+            </div>
+            <p id="quizProgressText" class="muted">0 de 8 respondidas</p>
+          </div>
+        </div>
+
+        <div class="grid grid-2 quiz-grid-pro">
           <article class="card quiz-card" data-answer="b">
-            <h4>1. ¿Qué explica la selección natural?</h4>
-            <button class="answer" data-choice="a">A. Que los seres vivos no cambian</button>
-            <button class="answer" data-choice="b">B. Que ciertos rasgos heredables pueden hacerse más comunes</button>
-            <button class="answer" data-choice="c">C. Que todo cambio individual se hereda</button>
+            <h4>1. ¿Qué describe mejor la biodiversidad?</h4>
+            <button class="answer" data-choice="a">A. Solo la variedad de animales</button>
+            <button class="answer" data-choice="b">B. Genes, especies y ecosistemas</button>
+            <button class="answer" data-choice="c">C. Solo plantas y hongos</button>
             <p class="feedback" aria-live="polite"></p>
           </article>
 
           <article class="card quiz-card" data-answer="c">
-            <h4>2. ¿Qué evidencia compara ADN?</h4>
+            <h4>2. ¿Qué evidencia compara secuencias de ADN?</h4>
             <button class="answer" data-choice="a">A. Paleontológica</button>
-            <button class="answer" data-choice="b">B. Embriológica</button>
+            <button class="answer" data-choice="b">B. Biogeográfica</button>
             <button class="answer" data-choice="c">C. Molecular</button>
             <p class="feedback" aria-live="polite"></p>
           </article>
@@ -346,15 +454,72 @@
           <article class="card quiz-card" data-answer="a">
             <h4>3. ¿Qué ocurre en la especiación?</h4>
             <button class="answer" data-choice="a">A. Se forma una especie nueva</button>
-            <button class="answer" data-choice="b">B. Todas las especies se vuelven iguales</button>
-            <button class="answer" data-choice="c">C. Se detiene toda evolución</button>
+            <button class="answer" data-choice="b">B. Todos los seres vivos se vuelven iguales</button>
+            <button class="answer" data-choice="c">C. Se detienen las mutaciones</button>
             <p class="feedback" aria-live="polite"></p>
           </article>
+
+          <article class="card quiz-card" data-answer="b">
+            <h4>4. ¿Qué hace la selección natural?</h4>
+            <button class="answer" data-choice="a">A. Elige de forma intencional el mejor organismo</button>
+            <button class="answer" data-choice="b">B. Favorece rasgos heredables ventajosos</button>
+            <button class="answer" data-choice="c">C. Produce mutaciones nuevas por necesidad</button>
+            <p class="feedback" aria-live="polite"></p>
+          </article>
+
+          <article class="card quiz-card" data-answer="c">
+            <h4>5. ¿Qué son los órganos homólogos?</h4>
+            <button class="answer" data-choice="a">A. Órganos sin estructura común</button>
+            <button class="answer" data-choice="b">B. Órganos que ya no existen</button>
+            <button class="answer" data-choice="c">C. Estructuras con base común y funciones distintas</button>
+            <p class="feedback" aria-live="polite"></p>
+          </article>
+
+          <article class="card quiz-card" data-answer="a">
+            <h4>6. ¿Qué frase representa mejor una adaptación?</h4>
+            <button class="answer" data-choice="a">A. Rasgo que mejora la supervivencia en un ambiente</button>
+            <button class="answer" data-choice="b">B. Cualquier cambio temporal del cuerpo</button>
+            <button class="answer" data-choice="c">C. Hábito aprendido durante la vida</button>
+            <p class="feedback" aria-live="polite"></p>
+          </article>
+
+          <article class="card quiz-card" data-answer="b">
+            <h4>7. ¿Qué se necesita para que ocurra especiación?</h4>
+            <button class="answer" data-choice="a">A. Que todos los organismos tengan el mismo ambiente</button>
+            <button class="answer" data-choice="b">B. Aislamiento y acumulación de diferencias</button>
+            <button class="answer" data-choice="c">C. Que desaparezcan todos los fósiles</button>
+            <p class="feedback" aria-live="polite"></p>
+          </article>
+
+          <article class="card quiz-card" data-answer="c">
+            <h4>8. ¿Por qué importa cuidar la biodiversidad?</h4>
+            <button class="answer" data-choice="a">A. Porque solo protege especies raras</button>
+            <button class="answer" data-choice="b">B. Porque evita estudiar evolución</button>
+            <button class="answer" data-choice="c">C. Porque sostiene ecosistemas y relaciones ecológicas</button>
+            <p class="feedback" aria-live="polite"></p>
+          </article>
+        </div>
+
+        <div class="quiz-actions panel">
+          <div>
+            <h4>Resultado del quiz</h4>
+            <p class="muted">Cuando respondas todo, presiona el botón para ver tu resultado final.</p>
+          </div>
+          <div class="result-box" id="quizResultBox" aria-live="polite">
+            <p><strong>Puntaje:</strong> <span id="quizScore">0</span> / 8</p>
+            <p><strong>Porcentaje:</strong> <span id="quizPercent">0%</span></p>
+            <p><strong>Nota:</strong> <span id="quizGrade">1.0</span></p>
+          </div>
+          <div class="result-buttons">
+            <button type="button" class="btn btn-primary quiz-action-btn" id="gradeQuizBtn">Calcular resultado</button>
+            <button type="button" class="btn btn-secondary quiz-action-btn" id="resetQuizBtn">Reiniciar quiz</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="accesibilidad" class="section container">
+    <section id="accesibilidad"
+ class="section container">
       <div class="section-head">
         <div>
           <p class="eyebrow">Accesibilidad</p>
@@ -412,62 +577,5 @@
   </aside>
 
   <script src="assets/js/app.js"></script>
-
-<!-- TOOLBAR ACCESIBILIDAD -->
-<div id="toolbar" style="position:fixed;top:10px;right:10px;z-index:999;">
-<button onclick="toggleTheme()">🌓</button>
-<button onclick="incFont()">A+</button>
-<button onclick="decFont()">A-</button>
-<button onclick="leerPagina()">🗣️</button>
-</div>
-
-<!-- PROGRESO -->
-<div style="position:fixed;top:0;left:0;width:100%;height:6px;background:#111;">
-<div id="bar" style="height:100%;width:0%;background:#22d3ee;"></div>
-</div>
-
-<!-- QUIZ -->
-<section style="padding:40px;">
-<h2>🧪 Evaluación</h2>
-<p>¿Qué es selección natural?</p>
-<button onclick="q3(1)">Proceso donde sobreviven los más adaptados</button>
-<button onclick="q3(0)">Todos sobreviven igual</button>
-
-<p>¿Qué estudia el ADN?</p>
-<button onclick="q4(1)">Información genética</button>
-<button onclick="q4(0)">Solo huesos</button>
-
-<p>¿Qué es biodiversidad?</p>
-<button onclick="q(1)">Variedad de vida</button>
-<button onclick="q(0)">Solo animales</button>
-
-<p>¿Qué demuestra un fósil?</p>
-<button onclick="q2(1)">Cambio en especies</button>
-<button onclick="q2(0)">Nada cambia</button>
-
-<h3 id="nota"></h3>
-</section>
-
-
-<section style="padding:40px;">
-<h2>🧬 Evolución (más contenido)</h2>
-<p>La evolución ocurre cuando los seres vivos cambian con el tiempo.</p>
-<ul>
-<li>🔹 Mutaciones</li>
-<li>🔹 Selección natural</li>
-<li>🔹 Adaptación</li>
-</ul>
-</section>
-
-<section style="padding:40px;">
-<h2>🔍 Pruebas de la evolución</h2>
-<p>Existen diferentes evidencias:</p>
-<ul>
-<li>🦴 Fósiles</li>
-<li>🧬 ADN</li>
-<li>🦾 Anatomía comparada</li>
-<li>🗺️ Biogeografía</li>
-</ul>
-</section>
 </body>
 </html>

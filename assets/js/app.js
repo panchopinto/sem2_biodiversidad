@@ -78,72 +78,92 @@ resetBtn?.addEventListener('click', () => {
   }
 });
 
-// Quiz
+
+// Quiz pro
 const quizCards = document.querySelectorAll('.quiz-card');
+const gradeQuizBtn = document.getElementById('gradeQuizBtn');
+const resetQuizBtn = document.getElementById('resetQuizBtn');
+const quizScore = document.getElementById('quizScore');
+const quizPercent = document.getElementById('quizPercent');
+const quizGrade = document.getElementById('quizGrade');
+const quizProgressBar = document.getElementById('quizProgressBar');
+const quizProgressText = document.getElementById('quizProgressText');
+
+function updateQuizProgress() {
+  const answeredCards = [...quizCards].filter(card => card.dataset.selected);
+  const total = quizCards.length;
+  const answered = answeredCards.length;
+  const percent = total ? (answered / total) * 100 : 0;
+  if (quizProgressBar) quizProgressBar.style.width = `${percent}%`;
+  if (quizProgressText) quizProgressText.textContent = `${answered} de ${total} respondidas`;
+}
+
+function gradeQuiz() {
+  let correct = 0;
+  quizCards.forEach(card => {
+    const selected = card.dataset.selected;
+    const correctAnswer = card.dataset.answer;
+    if (selected && selected === correctAnswer) correct += 1;
+  });
+
+  const total = quizCards.length || 1;
+  const percent = Math.round((correct / total) * 100);
+  const grade = (1 + (correct / total) * 6).toFixed(1);
+
+  if (quizScore) quizScore.textContent = String(correct);
+  if (quizPercent) quizPercent.textContent = `${percent}%`;
+  if (quizGrade) quizGrade.textContent = grade;
+}
+
+function resetQuiz() {
+  quizCards.forEach(card => {
+    delete card.dataset.selected;
+    card.classList.remove('answered');
+    const feedback = card.querySelector('.feedback');
+    const buttons = card.querySelectorAll('.answer');
+    buttons.forEach(btn => btn.classList.remove('correct', 'wrong'));
+    if (feedback) feedback.textContent = '';
+  });
+
+  if (quizScore) quizScore.textContent = '0';
+  if (quizPercent) quizPercent.textContent = '0%';
+  if (quizGrade) quizGrade.textContent = '1.0';
+  updateQuizProgress();
+}
+
 quizCards.forEach(card => {
   const correctAnswer = card.dataset.answer;
   const feedback = card.querySelector('.feedback');
   const buttons = card.querySelectorAll('.answer');
+
   buttons.forEach(button => {
     button.addEventListener('click', () => {
+      card.dataset.selected = button.dataset.choice;
+      card.classList.add('answered');
       buttons.forEach(btn => btn.classList.remove('correct', 'wrong'));
+
       if (button.dataset.choice === correctAnswer) {
         button.classList.add('correct');
-        feedback.textContent = '✅ Correcto';
+        if (feedback) {
+          feedback.textContent = '✅ Correcto';
+          feedback.className = 'feedback ok';
+        }
       } else {
         button.classList.add('wrong');
         const correctButton = card.querySelector(`.answer[data-choice="${correctAnswer}"]`);
         correctButton?.classList.add('correct');
-        feedback.textContent = '❌ Revisa la respuesta correcta';
+        if (feedback) {
+          feedback.textContent = '❌ Revisa la alternativa correcta';
+          feedback.className = 'feedback bad';
+        }
       }
+
+      updateQuizProgress();
     });
   });
 });
 
-let score=0;
-let progress=0;
+gradeQuizBtn?.addEventListener('click', gradeQuiz);
+resetQuizBtn?.addEventListener('click', resetQuiz);
 
-function q(v){
- if(v){score+=50;alert("Correcto 👍")}else alert("Intenta otra vez 💡");
- progress+=25; updateBar();
-}
-function q2(v){
- if(v){score+=50;alert("Correcto 👍")}else alert("Intenta otra vez 💡");
- progress+=25; updateBar();
- let nota=1+(score/100)*6;
- document.getElementById("nota").innerHTML="Nota: "+nota.toFixed(1);
-}
-
-function updateBar(){
- document.getElementById("bar").style.width=progress+"%";
-}
-
-function toggleTheme(){
- document.body.classList.toggle("light");
-}
-
-function incFont(){
- document.body.style.fontSize="22px";
-}
-function decFont(){
- document.body.style.fontSize="16px";
-}
-
-function leerPagina(){
- let t=document.body.innerText;
- let s=new SpeechSynthesisUtterance(t);
- s.lang="es-CL";
- speechSynthesis.speak(s);
-}
-
-function q3(v){
- if(v){score+=50;alert("Correcto 👍")}else alert("Intenta otra vez 💡");
- progress+=25; updateBar();
-}
-
-function q4(v){
- if(v){score+=50;alert("Correcto 👍")}else alert("Intenta otra vez 💡");
- progress+=25; updateBar();
- let nota=1+(score/200)*6;
- document.getElementById("nota").innerHTML="Nota: "+nota.toFixed(1);
-}
+updateQuizProgress();
