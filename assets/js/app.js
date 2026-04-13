@@ -291,3 +291,16 @@ function updateSimulation() {
 }
 envRange?.addEventListener('input', updateSimulation);
 updateSimulation();
+
+
+// Ultra visual PIE: lectura rápida de tarjetas clave
+document.querySelectorAll('.idea-clave').forEach(box => {
+  box.addEventListener('click', () => {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(box.innerText);
+    utterance.lang = 'es-CL';
+    utterance.rate = 0.92;
+    window.speechSynthesis.speak(utterance);
+  });
+});

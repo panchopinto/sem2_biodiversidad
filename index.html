@@ -7,7 +7,7 @@
   <meta name="description" content="Sitio educativo visual y accesible para enseñanza media sobre biodiversidad, origen y evolución.">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body>
+<body class="ultra-visual">
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
   <header class="site-header">
@@ -67,6 +67,25 @@
       </div>
     </section>
 
+
+    <section class="section container">
+      <div class="panel visual-legend">
+        <div class="section-head compact">
+          <div>
+            <p class="eyebrow">Guía visual del sitio</p>
+            <h4>Los colores te ayudan a entender mejor</h4>
+          </div>
+          <span class="pill">Pensado para PIE</span>
+        </div>
+        <div class="legend-grid">
+          <div class="legend-item legend-concept">🧬 Concepto</div>
+          <div class="legend-item legend-example">🌿 Ejemplo</div>
+          <div class="legend-item legend-warning">⚠️ Error común</div>
+          <div class="legend-item legend-key">💡 Idea clave</div>
+        </div>
+      </div>
+    </section>
+
     <section id="ideas" class="section container">
       <div class="section-head">
         <div>
@@ -75,13 +94,14 @@
         </div>
         <span class="pill">Resumen rápido</span>
       </div>
-      <div class="grid grid-3">
-        <article class="card"><div class="num">1</div><p>La biodiversidad incluye genes, especies y ecosistemas.</p></article>
-        <article class="card"><div class="num">2</div><p>La evolución explica cómo cambian las especies con el tiempo.</p></article>
-        <article class="card"><div class="num">3</div><p>Las mutaciones y la recombinación generan variabilidad genética.</p></article>
-        <article class="card"><div class="num">4</div><p>La selección natural favorece rasgos que ayudan a sobrevivir y reproducirse.</p></article>
-        <article class="card"><div class="num">5</div><p>Los fósiles, la anatomía, la geografía y el ADN entregan evidencias.</p></article>
-        <article class="card"><div class="num">6</div><p>El aislamiento prolongado puede originar nuevas especies.</p></article>
+      <div class="idea-clave">💡 IDEA CLAVE: Cuidar la biodiversidad es proteger ecosistemas completos, no solo una especie aislada.</div>
+        <div class="grid grid-3">
+        <article class="card"><div class="num">1</div><p>La <span class="key key-bio">biodiversidad</span> incluye <span class="key key-concept">genes</span>, <span class="key key-concept">especies</span> y <span class="key key-concept">ecosistemas</span>.</p></article>
+        <article class="card"><div class="num">2</div><p>La <span class="key key-evolution">evolución</span> explica cómo <span class="key key-action">cambian las especies</span> con el tiempo.</p></article>
+        <article class="card"><div class="num">3</div><p>Las <span class="key key-concept">mutaciones</span> y la <span class="key key-concept">recombinación</span> generan <span class="key key-example">variabilidad genética</span>.</p></article>
+        <article class="card"><div class="num">4</div><p>La <span class="key key-selection">selección natural</span> favorece <span class="key key-example">rasgos</span> que ayudan a sobrevivir y reproducirse.</p></article>
+        <article class="card"><div class="num">5</div><p>Los <span class="key key-fossil">fósiles</span>, la anatomía, la geografía y el <span class="key key-concept">ADN</span> entregan <span class="key key-key">evidencias</span>.</p></article>
+        <article class="card"><div class="num">6</div><p>El <span class="key key-warning">aislamiento</span> prolongado puede originar <span class="key key-speciation">nuevas especies</span>.</p></article>
       </div>
     </section>
 
@@ -213,6 +233,7 @@
           <span class="pill">Visual + explicación breve</span>
         </div>
 
+        <div class="idea-clave">💡 IDEA CLAVE: La evolución no se apoya en una sola prueba; fósiles, ADN, anatomía y geografía se complementan.</div>
         <div class="grid grid-2 image-lesson-grid">
           <article class="image-card panel">
             <img src="assets/img/archaeopteryx.jpg" alt="Fósil de Archaeopteryx, usado como ejemplo de forma transicional en evolución.">
@@ -262,7 +283,8 @@
         <span class="pill">Paso a paso</span>
       </div>
 
-      <div class="grid grid-2 speciation-grid">
+      <div class="idea-clave">💡 IDEA CLAVE: Una nueva especie aparece después de muchas generaciones de aislamiento y acumulación de diferencias.</div>
+        <div class="grid grid-2 speciation-grid">
         <div class="steps-col">
           <article class="step"><span class="step-num">1</span><p>Una población se divide o queda aislada.</p></article>
           <article class="step"><span class="step-num">2</span><p>Cada grupo acumula diferencias genéticas con el tiempo.</p></article>
@@ -291,7 +313,15 @@
         <span class="pill">Aclaración rápida</span>
       </div>
 
-      <div class="grid grid-2 concept-grid">
+      
+        <div class="semantic-boxes">
+          <div class="semantic-box concept">🧬 CONCEPTO: palabras científicas importantes</div>
+          <div class="semantic-box example">🌿 EJEMPLO: caso que ayuda a comprender</div>
+          <div class="semantic-box warning">⚠️ ERROR COMÚN: idea que puede confundir</div>
+          <div class="semantic-box keyline">💡 IDEA CLAVE: resumen breve para recordar</div>
+        </div>
+
+        <div class="grid grid-2 concept-grid">
         <article class="card concept-card">
           <h4>🧬 Mutación</h4>
           <p>Es un cambio en el material genético. No siempre se ve a simple vista y no siempre es beneficioso.</p>
@@ -522,7 +552,7 @@
         <div class="quiz-header panel">
           <div>
             <h4>Antes de responder</h4>
-            <p class="muted">Lee cada pregunta con calma. Elige una alternativa por tarjeta. Al final, presiona el botón para ver tu puntaje, porcentaje y nota.</p>
+            <p class="muted">Lee cada pregunta con calma. Busca las <span class="key key-key">palabras clave</span>, elige una alternativa por tarjeta y luego revisa tu <span class="key key-example">puntaje</span>, <span class="key key-example">porcentaje</span> y <span class="key key-example">nota</span>.</p>
           </div>
           <div class="quiz-status">
             <div class="quiz-progress" aria-label="Progreso del quiz">
@@ -640,6 +670,39 @@
         </ul>
       </div>
     </section>
+
+    <section class="section container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Resumen visual</p>
+          <h3>Qué debes recordar al terminar</h3>
+        </div>
+        <span class="pill">Cierre de clase</span>
+      </div>
+      <div class="grid grid-4 summary-grid">
+        <article class="card summary-card">
+          <div class="summary-icon">🌱</div>
+          <h4>Biodiversidad</h4>
+          <p>Variedad de vida: genes, especies y ecosistemas.</p>
+        </article>
+        <article class="card summary-card">
+          <div class="summary-icon">🧬</div>
+          <h4>Evolución</h4>
+          <p>Cambio de poblaciones a lo largo del tiempo.</p>
+        </article>
+        <article class="card summary-card">
+          <div class="summary-icon">🦴</div>
+          <h4>Pruebas</h4>
+          <p>Fósiles, anatomía, biogeografía y ADN.</p>
+        </article>
+        <article class="card summary-card">
+          <div class="summary-icon">🌍</div>
+          <h4>Cuidado</h4>
+          <p>Proteger la biodiversidad mantiene ecosistemas funcionando.</p>
+        </article>
+      </div>
+    </section>
+
   </main>
 
   <footer class="site-footer">
