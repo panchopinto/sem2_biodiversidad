@@ -3,35 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Viewer 3D | ADN</title>
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <title>Viewer 3D | ADN en Sketchfab</title>
   <style>
-    body{margin:0;font-family:Inter,Arial,sans-serif;background:#07111f;color:#f8fafc}
-    .wrap{width:min(1200px,calc(100% - 32px));margin:0 auto;padding:28px 0}
-    .hero{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center}
-    .panel{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:26px;padding:20px}
-    model-viewer{width:100%;height:70vh;border-radius:22px;background:linear-gradient(180deg,#0f172a,#111827)}
-    .btn{display:inline-flex;text-decoration:none;background:#22d3ee;color:#082f49;padding:12px 16px;border-radius:16px;font-weight:800}
-    @media (max-width:760px){.hero{grid-template-columns:1fr} model-viewer{height:54vh}}
+    :root{
+      --bg:#07111f;
+      --surface:rgba(255,255,255,.07);
+      --line:rgba(255,255,255,.12);
+      --text:#f8fafc;
+      --muted:#cbd5e1;
+      --primary:#22d3ee;
+      --secondary:#34d399;
+      --shadow:0 22px 44px rgba(0,0,0,.24);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    .wrap{width:min(1220px,calc(100% - 32px));margin:0 auto;padding:28px 0}
+    .hero{display:grid;grid-template-columns:1fr 1.15fr;gap:22px;align-items:start}
+    .panel{background:var(--surface);border:1px solid var(--line);border-radius:26px;padding:22px;box-shadow:var(--shadow)}
+    .eyebrow{margin:0 0 8px;color:var(--primary);font-weight:900;text-transform:uppercase;letter-spacing:.18em;font-size:.78rem}
+    h1{margin:0 0 14px;font-size:2.2rem;line-height:1.1}
+    p{color:var(--muted)}
+    ul{padding-left:18px;color:var(--muted)}
+    .btn{display:inline-flex;text-decoration:none;background:var(--primary);color:#082f49;padding:12px 16px;border-radius:16px;font-weight:800}
+    .frame-wrap{position:relative;border-radius:22px;overflow:hidden;background:#111827;min-height:72vh}
+    iframe{width:100%;height:72vh;border:0}
+    .caption{margin-top:12px;font-size:.95rem;color:var(--muted)}
+    .tip-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}
+    .tip{border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:18px;padding:14px}
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .frame-wrap, iframe{min-height:58vh;height:58vh}
+      .tip-grid{grid-template-columns:1fr}
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="hero">
-      <div class="panel">
-        <p style="margin:0 0 8px;color:#22d3ee;font-weight:800;text-transform:uppercase;letter-spacing:.18em">Viewer 3D</p>
-        <h1>ADN en 3D</h1>
-        <p>Esta vista permite girar, acercar y observar una doble hélice de ADN. Sirve para reforzar la idea de evidencia molecular y material genético.</p>
-        <ul>
-          <li>Girar el modelo</li>
-          <li>Hacer zoom</li>
-          <li>Relacionar forma y función</li>
-        </ul>
+      <section class="panel">
+        <p class="eyebrow">Viewer 3D</p>
+        <h1>Explora una doble hélice de ADN</h1>
+        <p>
+          Esta vista usa un modelo 3D embebido desde Sketchfab para que el estudiante pueda observar la forma helicoidal del ADN,
+          acercar, alejar, girar y relacionar la estructura con la evidencia molecular en evolución.
+        </p>
+        <div class="tip-grid">
+          <div class="tip"><strong>👁️ Observa</strong><br>Cómo se enrollan las dos cadenas.</div>
+          <div class="tip"><strong>🧬 Relaciona</strong><br>La estructura con la información genética.</div>
+          <div class="tip"><strong>🔍 Explora</strong><br>Usa zoom y giro para ver mejor la forma.</div>
+          <div class="tip"><strong>🧠 Recuerda</strong><br>El ADN es una evidencia molecular de parentesco evolutivo.</div>
+        </div>
+        <p class="caption">
+          Modelo integrado desde Sketchfab. Necesita conexión a internet para cargarse correctamente.
+        </p>
         <a class="btn" href="../index.html#xr">← Volver al sitio</a>
-      </div>
-      <div class="panel">
-        <model-viewer src="https://modelviewer.dev/shared-assets/models/DNA.glb" camera-controls auto-rotate ar alt="Modelo 3D de ADN"></model-viewer>
-      </div>
+      </section>
+
+      <section class="panel">
+        <div class="frame-wrap">
+          <iframe
+            title="DNA 3D viewer"
+            frameborder="0"
+            allowfullscreen
+            allow="autoplay; fullscreen; xr-spatial-tracking"
+            xr-spatial-tracking
+            execution-while-out-of-viewport
+            execution-while-not-rendered
+            web-share
+            src="https://sketchfab.com/models/547d42f6c0184232a945051b6952a39e/embed?autostart=1&autospin=0.2&preload=1&ui_theme=dark&ui_infos=0&ui_watermark=0&ui_annotations=0">
+          </iframe>
+        </div>
+        <p class="caption">
+          Recurso sugerido para actividades de observación guiada, comparación estructura-función y explicación oral breve.
+        </p>
+      </section>
     </div>
   </div>
 </body>
