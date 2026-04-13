@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel del estudiante | Plataforma Biodiversidad</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="ultra-visual">
+  <header class="site-header">
+    <div class="container topbar">
+      <div class="brand">
+        <p class="eyebrow">Panel del estudiante</p>
+        <h1>Mi progreso en biodiversidad y evolución</h1>
+      </div>
+      <nav class="nav" aria-label="Navegación principal">
+        <a href="index.html">Volver al contenido</a>
+        <a href="login.html">Cambiar estudiante</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="dashboard-page container">
+    <section class="dashboard-hero panel">
+      <div>
+        <p class="eyebrow cyan">Resumen</p>
+        <h2 id="dashStudentName">Estudiante</h2>
+        <p class="muted" id="dashStudentCourse">Curso</p>
+        <p class="muted" id="dashStudentGoal">Objetivo personal: —</p>
+      </div>
+      <div class="dashboard-hero-actions">
+        <a class="btn btn-primary" href="index.html">Continuar aprendizaje</a>
+        <button class="btn btn-secondary" type="button" id="logoutBtn">Borrar datos locales</button>
+      </div>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel dashboard-metric">
+        <p class="eyebrow">Avance general</p>
+        <div class="big-number" id="dashOverallProgress">0%</div>
+        <div class="quiz-progress"><div class="quiz-progress-bar" id="dashOverallBar" style="width:0%"></div></div>
+      </article>
+      <article class="panel dashboard-metric">
+        <p class="eyebrow amber">Estrellas</p>
+        <div class="big-number" id="dashStars">0 ⭐</div>
+        <p class="muted">Se obtienen al completar secciones y responder el quiz.</p>
+      </article>
+      <article class="panel dashboard-metric">
+        <p class="eyebrow lime">Última nota</p>
+        <div class="big-number" id="dashGrade">1.0</div>
+        <p class="muted" id="dashScoreLine">Puntaje: 0 / 8</p>
+      </article>
+      <article class="panel dashboard-metric">
+        <p class="eyebrow rose">Logro actual</p>
+        <div class="big-number badge-box" id="dashBadge">En progreso</div>
+        <p class="muted">Se actualiza según el quiz final.</p>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="section-head compact">
+        <div>
+          <p class="eyebrow">Secciones del curso</p>
+          <h3>Progreso por tema</h3>
+        </div>
+        <span class="pill">Local</span>
+      </div>
+      <div class="topic-list" id="topicList"></div>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel">
+        <div class="section-head compact">
+          <div>
+            <p class="eyebrow cyan">Sugerencia</p>
+            <h3>Siguiente paso recomendado</h3>
+          </div>
+        </div>
+        <p class="muted" id="dashRecommendation">Completa una sección para recibir una recomendación.</p>
+      </article>
+      <article class="panel">
+        <div class="section-head compact">
+          <div>
+            <p class="eyebrow">Acciones rápidas</p>
+            <h3>Continuidad</h3>
+          </div>
+        </div>
+        <div class="cta-group">
+          <a class="btn btn-secondary" href="index.html#ideas">Ir a ideas clave</a>
+          <a class="btn btn-secondary" href="index.html#xr">Abrir XR / 3D</a>
+          <a class="btn btn-secondary" href="index.html#quiz">Ir al quiz final</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

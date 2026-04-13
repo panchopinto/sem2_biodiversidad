@@ -25,9 +25,25 @@
         <a href="#cuidado">Cuidado</a>
         <a href="#xr">XR / 3D</a>
         <a href="#quiz">Quiz</a>
+        <a href="dashboard.html">Mi panel</a>
       </nav>
     </div>
   </header>
+
+  <section class="student-appbar">
+    <div class="container student-appbar-inner">
+      <div class="student-meta">
+        <span class="student-chip" id="studentNameChip">👤 Invitado</span>
+        <span class="student-chip" id="studentCourseChip">Curso no definido</span>
+        <span class="student-chip" id="studentStarsChip">⭐ 0</span>
+      </div>
+      <div class="student-actions">
+        <a class="btn btn-secondary compact-btn" href="login.html" id="loginLinkBtn">Entrar / cambiar estudiante</a>
+        <a class="btn btn-primary compact-btn" href="dashboard.html">Ver panel</a>
+      </div>
+    </div>
+  </section>
+
 
   <main id="contenido">
     <section class="hero">
@@ -44,7 +60,7 @@
             <a class="btn btn-secondary" href="#accesibilidad">Ver accesibilidad</a>
             <button class="btn btn-secondary" id="guidedModeBtn" type="button">🧭 Modo guiado</button>
           </div>
-          <div class="hero-highlights">
+          <div class="dashboard-callout panel"><h3 class="small-title">Tu recorrido</h3><p class="muted">Marca secciones como completadas, responde el quiz y revisa tus resultados en el panel del estudiante.</p><div class="cta-group"><a class="btn btn-primary" href="dashboard.html">Ir al panel</a><a class="btn btn-secondary" href="login.html">Configurar estudiante</a></div></div><div class="hero-highlights">
             <div class="mini-card">🌱 Biodiversidad</div>
             <div class="mini-card">🦒 Teorías evolutivas</div>
             <div class="mini-card">🦴 Evidencias</div>
@@ -86,7 +102,7 @@
       </div>
     </section>
 
-    <section id="ideas" class="section container">
+    <section id="ideas" data-track="ideas" class="section container">
       <div class="section-head">
         <div>
           <p class="eyebrow">Ideas clave</p>
@@ -134,7 +150,7 @@
     </section>
 
 
-    <section id="teorias" class="section section-tinted">
+    <section id="teorias" data-track="teorias" class="section section-tinted">
       <div class="container">
         <div class="section-head">
           <div>
@@ -223,7 +239,7 @@
       </div>
     </section>
 
-    <section id="pruebas" class="section section-tinted">
+    <section id="pruebas" data-track="pruebas" class="section section-tinted">
       <div class="container">
         <div class="section-head">
           <div>
@@ -274,7 +290,7 @@
       </div>
     </section>
 
-    <section id="especiacion" class="section container">
+    <section id="especiacion" data-track="especiacion" class="section container">
       <div class="section-head">
         <div>
           <p class="eyebrow lime">Especiación</p>
@@ -304,7 +320,7 @@
     </section>
 
     
-    <section id="conceptos" class="section container">
+    <section id="conceptos" data-track="conceptos" class="section container">
       <div class="section-head">
         <div>
           <p class="eyebrow">Conceptos clave</p>
@@ -404,7 +420,7 @@
     </section>
 
 
-    <section id="cuidado" class="section section-tinted">
+    <section id="cuidado" data-track="cuidado" class="section section-tinted">
       <div class="container">
         <div class="section-head">
           <div>
@@ -473,7 +489,7 @@
 
     
 
-    <section id="xr" class="section container">
+    <section id="xr" data-track="xr" class="section container">
       <div class="section-head">
         <div>
           <p class="eyebrow cyan">XR / 3D</p>
@@ -539,7 +555,7 @@
     </section>
 
 
-    <section id="quiz" class="section section-tinted">
+    <section id="quiz" data-track="quiz" class="section section-tinted">
       <div class="container">
         <div class="section-head">
           <div>

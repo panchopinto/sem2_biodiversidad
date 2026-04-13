@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingreso del estudiante | Plataforma Biodiversidad</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="ultra-visual">
+  <main class="auth-page">
+    <section class="auth-card panel">
+      <p class="eyebrow">Plataforma educativa</p>
+      <h1>Configurar estudiante</h1>
+      <p class="muted">Esta versión funciona de forma local en el navegador. Sirve para guardar nombre, curso, progreso y resultados del quiz.</p>
+      <form id="studentLoginForm" class="auth-form">
+        <label>
+          <span>Nombre del estudiante</span>
+          <input type="text" id="studentNameInput" placeholder="Ejemplo: Francisca Soto" required>
+        </label>
+        <label>
+          <span>Curso</span>
+          <select id="studentCourseInput" required>
+            <option value="">Selecciona un curso</option>
+            <option>1° Medio</option>
+            <option>2° Medio</option>
+            <option>3° Medio</option>
+            <option>4° Medio</option>
+          </select>
+        </label>
+        <label>
+          <span>Objetivo personal</span>
+          <input type="text" id="studentGoalInput" placeholder="Ejemplo: entender mejor la selección natural">
+        </label>
+        <div class="auth-actions">
+          <button type="submit" class="btn btn-primary">Guardar y continuar</button>
+          <a class="btn btn-secondary" href="index.html">Volver al sitio</a>
+        </div>
+      </form>
+      <div class="auth-preview card">
+        <h3>¿Qué guarda esta plataforma?</h3>
+        <ul class="clean-list">
+          <li>Nombre y curso del estudiante</li>
+          <li>Secciones completadas</li>
+          <li>Último resultado del quiz</li>
+          <li>Estrellas y logro actual</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
