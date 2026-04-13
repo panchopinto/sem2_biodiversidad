@@ -934,3 +934,10 @@ body.contrast .key {
 .finish-class-panel .btn {
   cursor: pointer;
 }
+
+
+.finish-secondary-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}

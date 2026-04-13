@@ -712,3 +712,136 @@ window.addEventListener('load', () => {
   persistDisplayedResults();
   updateFinishClassState();
 });
+
+
+const reportCsvBtn = document.getElementById('reportCsvBtn');
+const reportPrintBtn = document.getElementById('reportPrintBtn');
+
+function getClosingReportData() {
+  const profile = getStudentProfile();
+  const progress = getPlatformProgressPercent();
+  const evalData = getSavedEvaluation();
+  const nombre = profile.nombre || profile.name || profile.studentName || 'Estudiante sin nombre';
+  const curso = profile.curso || profile.course || profile.nivel || 'Curso no indicado';
+  const objetivo = profile.objetivo || profile.goal || 'Sin objetivo registrado';
+  const fecha = new Date().toLocaleString('es-CL');
+
+  return {
+    nombre,
+    curso,
+    objetivo,
+    fecha,
+    progreso: `${progress}%`,
+    puntaje: String(evalData.score),
+    porcentaje: String(evalData.percent),
+    nota: String(evalData.grade),
+    estrellas: String(evalData.stars),
+    logro: String(evalData.badge)
+  };
+}
+
+function escapeCsv(value) {
+  const text = String(value ?? '');
+  return `"${text.replace(/"/g, '""')}"`;
+}
+
+function downloadCsvReport() {
+  const progress = getPlatformProgressPercent();
+  if (progress < 100) {
+    alert(`Aún no se puede descargar el informe. Progreso actual: ${progress}%.`);
+    updateFinishClassState();
+    return;
+  }
+  const data = getClosingReportData();
+  const headers = ['Nombre','Curso','Objetivo','Fecha','Progreso','Puntaje','Porcentaje','Nota','Estrellas','Logro'];
+  const row = [data.nombre, data.curso, data.objetivo, data.fecha, data.progreso, data.puntaje, data.porcentaje, data.nota, data.estrellas, data.logro];
+  const csv = headers.map(escapeCsv).join(',') + '\n' + row.map(escapeCsv).join(',');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const safeName = data.nombre.toLowerCase().replace(/[^a-z0-9áéíóúñ]+/gi, '_');
+  a.href = url;
+  a.download = `cierre_clase_${safeName || 'estudiante'}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function openPrintableReport() {
+  const progress = getPlatformProgressPercent();
+  if (progress < 100) {
+    alert(`Aún no se puede generar el informe. Progreso actual: ${progress}%.`);
+    updateFinishClassState();
+    return;
+  }
+  const data = getClosingReportData();
+  const reportHtml = `
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Informe de cierre de clase</title>
+<style>
+  body{font-family:Arial,Helvetica,sans-serif;margin:32px;color:#111}
+  h1{margin-bottom:6px}
+  .muted{color:#555}
+  .box{border:1px solid #ccc;border-radius:12px;padding:16px;margin-top:16px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .item{padding:10px;border:1px solid #e5e7eb;border-radius:10px;background:#fafafa}
+  .label{font-size:12px;text-transform:uppercase;color:#666;font-weight:bold;margin-bottom:4px}
+  .value{font-size:16px}
+  @media print { .no-print{display:none} body{margin:18px} }
+</style>
+</head>
+<body>
+  <h1>Informe de cierre de clase</h1>
+  <p class="muted">Resumen generado desde la plataforma local de biodiversidad.</p>
+  <div class="box">
+    <div class="grid">
+      <div class="item"><div class="label">Nombre</div><div class="value">${data.nombre}</div></div>
+      <div class="item"><div class="label">Curso</div><div class="value">${data.curso}</div></div>
+      <div class="item"><div class="label">Objetivo</div><div class="value">${data.objetivo}</div></div>
+      <div class="item"><div class="label">Fecha y hora</div><div class="value">${data.fecha}</div></div>
+      <div class="item"><div class="label">Progreso</div><div class="value">${data.progreso}</div></div>
+      <div class="item"><div class="label">Puntaje</div><div class="value">${data.puntaje}</div></div>
+      <div class="item"><div class="label">Porcentaje</div><div class="value">${data.porcentaje}</div></div>
+      <div class="item"><div class="label">Nota</div><div class="value">${data.nota}</div></div>
+      <div class="item"><div class="label">Estrellas</div><div class="value">${data.estrellas}</div></div>
+      <div class="item"><div class="label">Logro</div><div class="value">${data.logro}</div></div>
+    </div>
+  </div>
+  <p class="no-print" style="margin-top:20px;">
+    Usa la opción <strong>Imprimir</strong> del navegador y elige <strong>Guardar como PDF</strong> si quieres exportarlo.
+  </p>
+  <script>window.onload = () => window.print();</script>
+</body>
+</html>`;
+  const reportWindow = window.open('', '_blank');
+  if (!reportWindow) {
+    alert('No se pudo abrir la ventana del informe. Revisa si el navegador bloqueó ventanas emergentes.');
+    return;
+  }
+  reportWindow.document.open();
+  reportWindow.document.write(reportHtml);
+  reportWindow.document.close();
+}
+
+function updateFinishClassStateExtended() {
+  const progress = getPlatformProgressPercent();
+  const enabled = progress >= 100;
+  if (reportCsvBtn) reportCsvBtn.disabled = !enabled;
+  if (reportPrintBtn) reportPrintBtn.disabled = !enabled;
+}
+
+reportCsvBtn?.addEventListener('click', downloadCsvReport);
+reportPrintBtn?.addEventListener('click', openPrintableReport);
+
+window.addEventListener('load', updateFinishClassStateExtended);
+if (typeof updateFinishClassState === 'function') {
+  const _oldUpdateFinishClassState = updateFinishClassState;
+  updateFinishClassState = function() {
+    _oldUpdateFinishClassState();
+    updateFinishClassStateExtended();
+  }
+}
