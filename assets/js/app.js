@@ -135,3 +135,15 @@ function leerPagina(){
  s.lang="es-CL";
  speechSynthesis.speak(s);
 }
+
+function q3(v){
+ if(v){score+=50;alert("Correcto 👍")}else alert("Intenta otra vez 💡");
+ progress+=25; updateBar();
+}
+
+function q4(v){
+ if(v){score+=50;alert("Correcto 👍")}else alert("Intenta otra vez 💡");
+ progress+=25; updateBar();
+ let nota=1+(score/200)*6;
+ document.getElementById("nota").innerHTML="Nota: "+nota.toFixed(1);
+}
