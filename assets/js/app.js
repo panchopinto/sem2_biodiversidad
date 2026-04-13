@@ -556,3 +556,159 @@ document.addEventListener('DOMContentLoaded', () => {
   attachLoginForm();
   renderDashboard();
 });
+
+
+
+// ===== Cierre de clase y correo =====
+const finishClassBtn = document.getElementById('finishClassBtn');
+const finishClassMsg = document.getElementById('finishClassMsg');
+
+function getStudentProfile() {
+  try {
+    const raw = localStorage.getItem('studentProfile') || localStorage.getItem('student') || localStorage.getItem('perfilEstudiante');
+    return raw ? JSON.parse(raw) : {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function getPlatformProgressPercent() {
+  let percent = 0;
+
+  const directKeys = ['progressPercent', 'overallProgress', 'courseProgress', 'progresoGeneral'];
+  for (const key of directKeys) {
+    const value = Number(localStorage.getItem(key));
+    if (!Number.isNaN(value) && value > percent) percent = value;
+  }
+
+  // Fallback: estimate from section progress object if available
+  const objectKeys = ['progress', 'courseSections', 'sectionProgress', 'progreso'];
+  for (const key of objectKeys) {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(key) || '{}');
+      const values = Object.values(parsed).map(v => Number(v)).filter(v => !Number.isNaN(v));
+      if (values.length) {
+        const avg = values.reduce((a,b)=>a+b,0) / values.length;
+        if (avg > percent) percent = avg;
+      }
+    } catch (e) {}
+  }
+
+  // Fallback from quiz answered score if nothing else
+  if (!percent) {
+    const quizPercentEl = document.getElementById('quizPercent');
+    if (quizPercentEl) {
+      const match = (quizPercentEl.textContent || '').match(/(\d+)/);
+      if (match) percent = Number(match[1]);
+    }
+  }
+
+  return Math.max(0, Math.min(100, Math.round(percent)));
+}
+
+function getSavedEvaluation() {
+  const score = document.getElementById('quizScore')?.textContent || localStorage.getItem('quizScore') || '0';
+  const percent = document.getElementById('quizPercent')?.textContent || localStorage.getItem('quizPercent') || '0%';
+  const grade = document.getElementById('quizGrade')?.textContent || localStorage.getItem('quizGrade') || '1.0';
+  const stars = document.getElementById('starCount')?.textContent || localStorage.getItem('starCount') || '0';
+  const badge = document.getElementById('badgeText')?.textContent || localStorage.getItem('badgeText') || 'En progreso';
+  return { score, percent, grade, stars, badge };
+}
+
+function updateFinishClassState() {
+  if (!finishClassBtn) return;
+  const progress = getPlatformProgressPercent();
+  const enabled = progress >= 100;
+  finishClassBtn.disabled = !enabled;
+  if (finishClassMsg) {
+    finishClassMsg.textContent = enabled
+      ? 'El progreso llegó al 100%. Puedes preparar el correo de cierre de clase.'
+      : `Progreso actual: ${progress}%. Completa el 100% para habilitar el envío.`;
+  }
+}
+
+function buildFinishMailto() {
+  const profile = getStudentProfile();
+  const progress = getPlatformProgressPercent();
+  const evalData = getSavedEvaluation();
+  const nombre = profile.nombre || profile.name || profile.studentName || 'Estudiante sin nombre';
+  const curso = profile.curso || profile.course || profile.nivel || 'Curso no indicado';
+  const objetivo = profile.objetivo || profile.goal || 'Sin objetivo registrado';
+  const fecha = new Date().toLocaleString('es-CL');
+
+  const subject = `Cierre de clase - ${nombre} - ${curso}`;
+  const body = [
+    'Hola,',
+    '',
+    'Se informa el cierre de clase del siguiente estudiante:',
+    '',
+    `Nombre: ${nombre}`,
+    `Curso: ${curso}`,
+    `Objetivo: ${objetivo}`,
+    `Fecha y hora: ${fecha}`,
+    '',
+    'Resumen de avance:',
+    `Progreso general: ${progress}%`,
+    `Puntaje quiz: ${evalData.score}`,
+    `Porcentaje quiz: ${evalData.percent}`,
+    `Nota final: ${evalData.grade}`,
+    `Estrellas: ${evalData.stars}`,
+    `Logro: ${evalData.badge}`,
+    '',
+    'Este correo fue preparado desde la plataforma local de biodiversidad.',
+    '',
+    'Saludos.'
+  ].join('\n');
+
+  return `mailto:belenacuna@liceosannicolas.cl,franciscopinto@liceosannicolas.cl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+finishClassBtn?.addEventListener('click', () => {
+  const progress = getPlatformProgressPercent();
+  if (progress < 100) {
+    alert(`Aún no se puede terminar la clase. Progreso actual: ${progress}%.`);
+    updateFinishClassState();
+    return;
+  }
+  const mailto = buildFinishMailto();
+  window.location.href = mailto;
+});
+
+// Persist quiz result values if available
+function persistDisplayedResults() {
+  const scoreEl = document.getElementById('quizScore');
+  const percentEl = document.getElementById('quizPercent');
+  const gradeEl = document.getElementById('quizGrade');
+  const starsEl = document.getElementById('starCount');
+  const badgeEl = document.getElementById('badgeText');
+
+  if (scoreEl) localStorage.setItem('quizScore', scoreEl.textContent || '0');
+  if (percentEl) localStorage.setItem('quizPercent', percentEl.textContent || '0%');
+  if (gradeEl) localStorage.setItem('quizGrade', gradeEl.textContent || '1.0');
+  if (starsEl) localStorage.setItem('starCount', starsEl.textContent || '0');
+  if (badgeEl) localStorage.setItem('badgeText', badgeEl.textContent || 'En progreso');
+}
+
+// Wrap existing gradeQuiz if present
+if (typeof gradeQuiz === 'function') {
+  const _originalGradeQuiz = gradeQuiz;
+  gradeQuiz = function() {
+    _originalGradeQuiz();
+    persistDisplayedResults();
+    // when quiz complete, mirror percent if it hits 100
+    const percentText = document.getElementById('quizPercent')?.textContent || '';
+    const match = percentText.match(/(\d+)/);
+    if (match) {
+      const qPercent = Number(match[1]);
+      if (!Number.isNaN(qPercent)) {
+        localStorage.setItem('progressPercent', String(qPercent));
+      }
+    }
+    updateFinishClassState();
+  }
+}
+
+window.addEventListener('load', () => {
+  persistDisplayedResults();
+  updateFinishClassState();
+});

@@ -916,3 +916,21 @@ body.contrast .key {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Cierre de clase / correo */
+.finish-class-panel {
+  margin-top: 18px;
+}
+.finish-actions {
+  display: grid;
+  gap: 12px;
+  align-items: start;
+}
+#finishClassBtn[disabled] {
+  opacity: .55;
+  cursor: not-allowed;
+}
+.finish-class-panel .btn {
+  cursor: pointer;
+}

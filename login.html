@@ -48,5 +48,19 @@
     </section>
   </main>
   <script src="assets/js/app.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('form');
+  if (!form) return;
+  form.addEventListener('submit', () => {
+    const nombre = document.querySelector('#nombre, #name, input[name="nombre"], input[name="name"]')?.value || '';
+    const curso = document.querySelector('#curso, #course, input[name="curso"], input[name="course"]')?.value || '';
+    const objetivo = document.querySelector('#objetivo, #goal, input[name="objetivo"], input[name="goal"]')?.value || '';
+    localStorage.setItem('studentProfile', JSON.stringify({ nombre, curso, objetivo }));
+  });
+});
+</script>
+
 </body>
 </html>
