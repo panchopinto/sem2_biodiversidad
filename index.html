@@ -23,6 +23,7 @@
         <a href="#conceptos">Conceptos</a>
         <a href="#especiacion">Especiación</a>
         <a href="#cuidado">Cuidado</a>
+        <a href="#xr">XR / 3D</a>
         <a href="#quiz">Quiz</a>
       </nav>
     </div>
@@ -41,6 +42,7 @@
           <div class="cta-group">
             <a class="btn btn-primary" href="#ideas">Comenzar</a>
             <a class="btn btn-secondary" href="#accesibilidad">Ver accesibilidad</a>
+            <button class="btn btn-secondary" id="guidedModeBtn" type="button">🧭 Modo guiado</button>
           </div>
           <div class="hero-highlights">
             <div class="mini-card">🌱 Biodiversidad</div>
@@ -82,6 +84,35 @@
         <article class="card"><div class="num">6</div><p>El aislamiento prolongado puede originar nuevas especies.</p></article>
       </div>
     </section>
+
+
+    <section class="section container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Apoyo al aprendizaje</p>
+          <h3>Cómo usar este recurso mejor</h3>
+        </div>
+        <span class="pill">PIE + DUA</span>
+      </div>
+      <div class="grid grid-3">
+        <article class="card support-card">
+          <div class="icon">🧭</div>
+          <h4>Modo guiado</h4>
+          <p>Presenta una sección a la vez para reducir distracciones y ayudar al foco.</p>
+        </article>
+        <article class="card support-card">
+          <div class="icon">🎮</div>
+          <h4>Gamificación simple</h4>
+          <p>Suma estrellas cuando avanzas y responde preguntas para reforzar la motivación.</p>
+        </article>
+        <article class="card support-card">
+          <div class="icon">🧪</div>
+          <h4>Aprender haciendo</h4>
+          <p>Incluye preguntas breves, un simulador simple y experiencias XR para comprender mejor ideas abstractas.</p>
+        </article>
+      </div>
+    </section>
+
 
     <section id="teorias" class="section section-tinted">
       <div class="container">
@@ -411,6 +442,73 @@
     </section>
 
     
+
+    <section id="xr" class="section container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow cyan">XR / 3D</p>
+          <h3>Aprender con realidad virtual, aumentada y modelos 3D</h3>
+        </div>
+        <span class="pill">Exploración inmersiva</span>
+      </div>
+
+      <div class="grid grid-3 xr-grid">
+        <article class="card xr-card">
+          <div class="icon">👁️</div>
+          <h4>Viewer 3D</h4>
+          <p>Explora una doble hélice de ADN en 3D, con giro automático y controles de acercamiento.</p>
+          <a class="btn btn-primary xr-btn" href="viewer3d/index.html">Abrir 3D</a>
+        </article>
+
+        <article class="card xr-card">
+          <div class="icon">📱</div>
+          <h4>Viewer AR</h4>
+          <p>Visualiza un modelo 3D en realidad aumentada usando <code>&lt;model-viewer&gt;</code> como base lista para crecer.</p>
+          <a class="btn btn-primary xr-btn" href="viewerAR/index.html">Abrir AR</a>
+        </article>
+
+        <article class="card xr-card">
+          <div class="icon">🥽</div>
+          <h4>Viewer VR</h4>
+          <p>Recorre una escena inmersiva con puntos de información sobre biodiversidad, selección natural y fósiles.</p>
+          <a class="btn btn-primary xr-btn" href="viewerVR/index.html">Abrir VR</a>
+        </article>
+      </div>
+
+      <div class="panel simulator-panel">
+        <div class="section-head compact">
+          <div>
+            <p class="eyebrow lime">Mini simulador</p>
+            <h4>Selección natural y camuflaje</h4>
+          </div>
+          <span class="pill">Interactivo</span>
+        </div>
+        <p class="muted">Mueve el control y observa cómo cambia la ventaja de una mariposa clara u oscura según el ambiente.</p>
+        <div class="simulator-grid">
+          <div class="sim-stage" id="simStage">
+            <div class="moth moth-light" id="mothLight">🦋</div>
+            <div class="moth moth-dark" id="mothDark">🦋</div>
+          </div>
+          <div class="sim-controls">
+            <label for="envRange"><strong>Ambiente</strong>: <span id="envLabel">Intermedio</span></label>
+            <input type="range" min="0" max="100" value="50" id="envRange">
+            <div class="sim-stats">
+              <div class="stat-card">
+                <span>Mariposa clara</span>
+                <strong id="lightChance">50%</strong>
+              </div>
+              <div class="stat-card">
+                <span>Mariposa oscura</span>
+                <strong id="darkChance">50%</strong>
+              </div>
+            </div>
+            <p class="muted" id="simExplanation">Cuando el ambiente se vuelve más oscuro, la mariposa oscura se camufla mejor y aumenta su probabilidad de sobrevivir.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
     <section id="quiz" class="section section-tinted">
       <div class="container">
         <div class="section-head">
@@ -509,6 +607,8 @@
             <p><strong>Puntaje:</strong> <span id="quizScore">0</span> / 8</p>
             <p><strong>Porcentaje:</strong> <span id="quizPercent">0%</span></p>
             <p><strong>Nota:</strong> <span id="quizGrade">1.0</span></p>
+            <p><strong>Estrellas:</strong> <span id="starCount">0</span> ⭐</p>
+            <p><strong>Logro:</strong> <span id="badgeText">En progreso</span></p>
           </div>
           <div class="result-buttons">
             <button type="button" class="btn btn-primary quiz-action-btn" id="gradeQuizBtn">Calcular resultado</button>
@@ -547,7 +647,7 @@
       <div class="panel">
         <h4>Sobre esta versión</h4>
         <p>
-          El contenido fue reorganizado a partir del material original en PDF, con apoyo visual adicional de imágenes abiertas y contextualizadas.
+          El contenido fue reorganizado a partir del material original en PDF, con apoyo visual adicional de imágenes abiertas y contextualizadas. Esta versión además incorpora un modo guiado, gamificación básica, simulador y rutas XR/3D.
         </p>
       </div>
       <div class="panel">

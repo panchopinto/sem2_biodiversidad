@@ -167,3 +167,127 @@ gradeQuizBtn?.addEventListener('click', gradeQuiz);
 resetQuizBtn?.addEventListener('click', resetQuiz);
 
 updateQuizProgress();
+
+
+// Gamificación + quiz extendido
+const starCount = document.getElementById('starCount');
+const badgeText = document.getElementById('badgeText');
+
+function updateGamification(correct, total) {
+  const stars = correct;
+  const percent = Math.round((correct / total) * 100);
+  let badge = 'En progreso';
+  if (percent >= 90) badge = 'Experto en evolución';
+  else if (percent >= 75) badge = 'Muy buen dominio';
+  else if (percent >= 50) badge = 'Buen comienzo';
+  if (starCount) starCount.textContent = String(stars);
+  if (badgeText) badgeText.textContent = badge;
+}
+
+const originalGradeQuiz = gradeQuiz;
+gradeQuiz = function() {
+  let correct = 0;
+  quizCards.forEach(card => {
+    const selected = card.dataset.selected;
+    const correctAnswer = card.dataset.answer;
+    if (selected && selected === correctAnswer) correct += 1;
+  });
+
+  const total = quizCards.length || 1;
+  const percent = Math.round((correct / total) * 100);
+  const grade = (1 + (correct / total) * 6).toFixed(1);
+
+  if (quizScore) quizScore.textContent = String(correct);
+  if (quizPercent) quizPercent.textContent = `${percent}%`;
+  if (quizGrade) quizGrade.textContent = grade;
+  updateGamification(correct, total);
+};
+
+// Modo guiado
+const guidedModeBtn = document.getElementById('guidedModeBtn');
+const guidedSections = [...document.querySelectorAll('main > section')].filter(section => section.id && section.id !== 'accesibilidad');
+let guidedIndex = 0;
+
+const guidedControls = document.createElement('div');
+guidedControls.className = 'guided-controls';
+guidedControls.innerHTML = `
+  <span class="guided-chip" id="guidedChip">Paso 1 de 1</span>
+  <button type="button" class="btn btn-secondary" id="guidedPrevBtn">← Anterior</button>
+  <button type="button" class="btn btn-primary" id="guidedNextBtn">Siguiente →</button>
+  <button type="button" class="btn btn-secondary" id="guidedExitBtn">Salir</button>
+`;
+document.body.appendChild(guidedControls);
+
+const guidedChip = document.getElementById('guidedChip');
+const guidedPrevBtn = document.getElementById('guidedPrevBtn');
+const guidedNextBtn = document.getElementById('guidedNextBtn');
+const guidedExitBtn = document.getElementById('guidedExitBtn');
+
+function renderGuidedMode() {
+  guidedSections.forEach(section => section.classList.remove('guided-current'));
+  const current = guidedSections[guidedIndex];
+  if (!current) return;
+  current.classList.add('guided-current');
+  current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (guidedChip) guidedChip.textContent = `Paso ${guidedIndex + 1} de ${guidedSections.length}`;
+  if (guidedPrevBtn) guidedPrevBtn.disabled = guidedIndex === 0;
+  if (guidedNextBtn) guidedNextBtn.disabled = guidedIndex === guidedSections.length - 1;
+}
+
+function startGuidedMode() {
+  body.classList.add('guided-active');
+  guidedIndex = 0;
+  renderGuidedMode();
+}
+
+function stopGuidedMode() {
+  body.classList.remove('guided-active');
+  guidedSections.forEach(section => section.classList.remove('guided-current'));
+}
+
+guidedModeBtn?.addEventListener('click', startGuidedMode);
+guidedPrevBtn?.addEventListener('click', () => {
+  guidedIndex = Math.max(0, guidedIndex - 1);
+  renderGuidedMode();
+});
+guidedNextBtn?.addEventListener('click', () => {
+  guidedIndex = Math.min(guidedSections.length - 1, guidedIndex + 1);
+  renderGuidedMode();
+});
+guidedExitBtn?.addEventListener('click', stopGuidedMode);
+
+// Simulador simple
+const envRange = document.getElementById('envRange');
+const envLabel = document.getElementById('envLabel');
+const lightChance = document.getElementById('lightChance');
+const darkChance = document.getElementById('darkChance');
+const simStage = document.getElementById('simStage');
+const simExplanation = document.getElementById('simExplanation');
+
+function updateSimulation() {
+  if (!envRange) return;
+  const value = Number(envRange.value);
+  const dark = value;
+  const light = 100 - value;
+
+  if (lightChance) lightChance.textContent = `${light}%`;
+  if (darkChance) darkChance.textContent = `${dark}%`;
+
+  if (value < 35) {
+    simStage?.classList.add('light-env');
+    simStage?.classList.remove('dark-env');
+    if (envLabel) envLabel.textContent = 'Claro';
+    if (simExplanation) simExplanation.textContent = 'En un ambiente claro, la mariposa clara se camufla mejor y aumenta su probabilidad de sobrevivir.';
+  } else if (value > 65) {
+    simStage?.classList.add('dark-env');
+    simStage?.classList.remove('light-env');
+    if (envLabel) envLabel.textContent = 'Oscuro';
+    if (simExplanation) simExplanation.textContent = 'En un ambiente oscuro, la mariposa oscura se camufla mejor y aumenta su probabilidad de sobrevivir.';
+  } else {
+    simStage?.classList.remove('light-env', 'dark-env');
+    if (envLabel) envLabel.textContent = 'Intermedio';
+    if (simExplanation) simExplanation.textContent = 'En un ambiente intermedio, ninguna variante tiene una ventaja tan marcada y ambas pueden sobrevivir en proporciones parecidas.';
+  }
+}
+envRange?.addEventListener('input', updateSimulation);
+updateSimulation();

@@ -464,3 +464,143 @@ button { font: inherit; }
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Upgrade profesional XR + gamificación */
+code {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid var(--line);
+  font-size: .92em;
+}
+.support-card,
+.xr-card {
+  min-height: 220px;
+}
+.xr-btn {
+  margin-top: 10px;
+}
+.simulator-panel {
+  margin-top: 24px;
+}
+.simulator-grid {
+  display: grid;
+  grid-template-columns: 1fr .9fr;
+  gap: 18px;
+  align-items: center;
+}
+.sim-stage {
+  position: relative;
+  min-height: 320px;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, #8b7355, #5b4634);
+  overflow: hidden;
+}
+.sim-stage.dark-env {
+  background: linear-gradient(135deg, #2f3640, #111827);
+}
+.sim-stage.light-env {
+  background: linear-gradient(135deg, #d8c3a5, #f6ead6);
+}
+.moth {
+  position: absolute;
+  font-size: 3.2rem;
+  transition: all .3s ease;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.18));
+}
+.moth-light {
+  left: 22%;
+  top: 36%;
+}
+.moth-dark {
+  right: 22%;
+  top: 48%;
+}
+.sim-controls {
+  display: grid;
+  gap: 14px;
+}
+.sim-controls input[type="range"] {
+  width: 100%;
+}
+.sim-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.stat-card {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 14px;
+}
+.stat-card span {
+  display: block;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.stat-card strong {
+  font-size: 1.4rem;
+}
+.guided-active .section,
+.guided-active .site-footer {
+  opacity: .22;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+.guided-active .guided-current {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  outline: 2px solid rgba(34,211,238,.35);
+  border-radius: 28px;
+}
+.guided-controls {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 65;
+  display: none;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.guided-active .guided-controls {
+  display: flex;
+}
+.guided-chip {
+  border: 1px solid var(--line);
+  background: var(--surface-strong);
+  border-radius: 999px;
+  padding: 10px 14px;
+  box-shadow: var(--shadow);
+  font-weight: 700;
+}
+.guided-controls .btn {
+  cursor: pointer;
+}
+.quiz-grid-pro .quiz-card {
+  min-height: 280px;
+}
+.result-box strong,
+.result-box span {
+  vertical-align: middle;
+}
+.xr-grid .card,
+.concept-grid .card {
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 1024px) {
+  .simulator-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .guided-controls {
+    left: 10px;
+    right: 10px;
+    bottom: 12px;
+  }
+}

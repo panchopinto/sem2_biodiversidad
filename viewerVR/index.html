@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viewer VR | Biodiversidad</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <style>
+    body{margin:0;font-family:Inter,Arial,sans-serif}
+    .overlay{
+      position:fixed;top:14px;left:14px;z-index:3;
+      background:rgba(7,17,31,.82);color:#fff;padding:14px 16px;border-radius:18px;max-width:360px
+    }
+    .overlay a{display:inline-block;margin-top:8px;background:#22d3ee;color:#082f49;padding:10px 14px;border-radius:12px;text-decoration:none;font-weight:800}
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <strong>Viewer VR</strong>
+    <p>Explora la escena. Encontrarás tres paneles: biodiversidad, selección natural y fósiles.</p>
+    <a href="../index.html#xr">← Volver al sitio</a>
+  </div>
+
+  <a-scene background="color: #0b1220">
+    <a-sky color="#10233e"></a-sky>
+    <a-plane rotation="-90 0 0" width="26" height="26" color="#1f4d2a"></a-plane>
+
+    <a-box position="-3 1.8 -4" depth="0.2" height="2.4" width="2.8" color="#1e293b"></a-box>
+    <a-text value="Biodiversidad\nVariedad de genes,\nespecies y ecosistemas" position="-4.1 2.3 -3.88" color="#ffffff" width="4"></a-text>
+
+    <a-box position="0 1.8 -6" depth="0.2" height="2.4" width="2.8" color="#1e293b"></a-box>
+    <a-text value="Seleccion natural\nFavorece rasgos\nventajosos" position="-1.1 2.3 -5.88" color="#ffffff" width="4"></a-text>
+
+    <a-box position="3 1.8 -4" depth="0.2" height="2.4" width="2.8" color="#1e293b"></a-box>
+    <a-text value="Fosiles\nMuestran cambios\na lo largo del tiempo" position="1.95 2.3 -3.88" color="#ffffff" width="4"></a-text>
+
+    <a-sphere position="-3 1 -4" radius="0.28" color="#22d3ee"></a-sphere>
+    <a-sphere position="0 1 -6" radius="0.28" color="#34d399"></a-sphere>
+    <a-sphere position="3 1 -4" radius="0.28" color="#f59e0b"></a-sphere>
+
+    <a-entity position="0 1.6 2">
+      <a-camera></a-camera>
+    </a-entity>
+  </a-scene>
+</body>
+</html>
