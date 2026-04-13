@@ -99,3 +99,24 @@ quizCards.forEach(card => {
     });
   });
 });
+
+
+// ===== PIE FUNCIONES =====
+
+// lectura por bloque
+function leer(texto){
+    const speech = new SpeechSynthesisUtterance(texto);
+    speech.lang = 'es-CL';
+    speech.rate = 0.9;
+    window.speechSynthesis.speak(speech);
+}
+
+// modo foco
+function activarFoco(id){
+    document.body.classList.add('focus-mode');
+    document.getElementById(id).classList.add('focus-content');
+}
+
+function salirFoco(){
+    document.body.classList.remove('focus-mode');
+}
