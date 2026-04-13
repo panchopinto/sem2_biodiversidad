@@ -101,22 +101,18 @@ quizCards.forEach(card => {
 });
 
 
-// ===== PIE FUNCIONES =====
+// ===== QUIZ PRO =====
+let score = 0;
 
-// lectura por bloque
-function leer(texto){
-    const speech = new SpeechSynthesisUtterance(texto);
-    speech.lang = 'es-CL';
-    speech.rate = 0.9;
-    window.speechSynthesis.speak(speech);
+function check(v){
+    if(v===1){score+=50; alert("Correcto 👍")}
+    else alert("Intentemos de nuevo 💡");
 }
 
-// modo foco
-function activarFoco(id){
-    document.body.classList.add('focus-mode');
-    document.getElementById(id).classList.add('focus-content');
-}
+function check2(v){
+    if(v===1){score+=50; alert("Correcto 👍")}
+    else alert("Intentemos de nuevo 💡");
 
-function salirFoco(){
-    document.body.classList.remove('focus-mode');
+    let nota = 1 + (score/100)*6;
+    document.getElementById("resultado_final").innerHTML = "Nota final: " + nota.toFixed(1);
 }
